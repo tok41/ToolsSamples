@@ -1,0 +1,12 @@
+
+*.pyc
+
+*.csv
+*.png
+
+*.log
+
+archives/
+logs/
+.ipynb_checkpoints/
+
