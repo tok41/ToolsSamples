@@ -8,5 +8,6 @@
 
 archives/
 logs/
+data/
 .ipynb_checkpoints/
 
