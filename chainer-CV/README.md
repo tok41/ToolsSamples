@@ -24,3 +24,9 @@ $ pip install chainercv
 - sample-segnet.ipynb
   - see : https://github.com/chainer/chainercv/tree/master/examples/segnet
 
+## sample : Training Faster-RCNN
+- sample-train-faster-rcnn.ipynb
+
+## create bounding box data set
+- create-bbox-data.py
+- create-bbox-data.ipynb
