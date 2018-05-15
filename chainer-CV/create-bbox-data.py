@@ -51,7 +51,7 @@ def getBBoxData(anno_file, classes, data_dir):
         bbox_list.append([obj['bndbox']['ymin'], obj['bndbox']
                           ['xmin'], obj['bndbox']['ymax'], obj['bndbox']['xmax']])
         obj_names.append(obj['name'])
-    bboxs = np.array(bbox_list, dtype=np.int32)
+    bboxs = np.array(bbox_list, dtype=np.float32)
     obj_names = np.array(obj_names)
     obj_ids = np.array(
         list(map(lambda x: classes.index(x), obj_names)), dtype=np.int32)
