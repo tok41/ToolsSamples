@@ -2,8 +2,8 @@
 # coding: utf-8
 
 # # 目的
-# - ChainerCVのデータセットを生成する
-# - データ元はjpeg画像とlabelImgで作ったxmlファイル
+# - pascal VOC形式のxmlファイルで作ったアノテーションデータをnumpy.arrayに変換する
+# - データ元はjpeg画像とlabelImgで作ったアノテーションデータ(xmlファイル)
 #     - https://github.com/tzutalin/labelImg
 #
 # ## required
@@ -26,7 +26,7 @@ import argparse
 
 def getBBoxData(anno_file, classes, data_dir):
     """
-    read and parse annotation file(Pascal VOC like XML)
+    Read and Parse annotation file(Pascal VOC like XML)
     Args:
         anno_file : file path of annotation file (Pascal VOC like XML)
         classes : list of classes ([class1(str), class2, ...])
@@ -43,7 +43,7 @@ def getBBoxData(anno_file, classes, data_dir):
     # read image
     img = Image.open(os.path.join(data_dir, ann_data['filename']))
     img_arr = np.asarray(img).transpose(2, 0, 1).astype(
-        np.float32)  # Chainer入力用にarrayを変換
+        np.float32)  # データ型を指定
     # BoundingBoxとクラス名を読む
     bbox_list = list()
     obj_names = list()
@@ -51,7 +51,7 @@ def getBBoxData(anno_file, classes, data_dir):
         bbox_list.append([obj['bndbox']['ymin'], obj['bndbox']
                           ['xmin'], obj['bndbox']['ymax'], obj['bndbox']['xmax']])
         obj_names.append(obj['name'])
-    bboxs = np.array(bbox_list, dtype=np.float32)
+    bboxs = np.array(bbox_list, dtype=np.float32) # データ型を指定
     obj_names = np.array(obj_names)
     obj_ids = np.array(
         list(map(lambda x: classes.index(x), obj_names)), dtype=np.int32)
